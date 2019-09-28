@@ -45,7 +45,6 @@ public class SiteServiceImpl implements SiteService {
 		} else {
 			return false;
 		}
-
 	}
 
 	@Override
