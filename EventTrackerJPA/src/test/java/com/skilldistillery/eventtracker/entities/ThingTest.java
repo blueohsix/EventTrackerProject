@@ -17,7 +17,7 @@ class ThingTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Thing thing;
+	private Site site;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,20 +32,21 @@ class ThingTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		 em = emf.createEntityManager();
-		 thing = em.find(Thing.class, 1);
+		 site = em.find(Site.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		thing = null;
+		site = null;
 	}
 	
 
 	@Test
 	@DisplayName("Tests if the thing table is mapped correctly")
 	void test() {
-		assertEquals(1, thing.getId());
+		assertEquals(1, site.getId());
+		assertEquals("INDOT", site.getSiteOwner());
 	}
 
 }
