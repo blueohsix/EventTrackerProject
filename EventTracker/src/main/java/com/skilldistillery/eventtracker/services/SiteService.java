@@ -8,12 +8,14 @@ public interface SiteService {
 	List<Site> showAll();
 
 	List<Site> showBySiteNumber(String siteNumber);
+	
+	Site showById(Integer id);
 
 	Site addSite(Site site);
 	
-	Site updateSite(int id, Site site);
+	Site updateSite(Integer id, Site site);
 	
-	Boolean deleteSite(int id);
+	boolean deleteSite(Integer id);
 	
 	
 	

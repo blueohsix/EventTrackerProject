@@ -34,31 +34,41 @@ public class SiteServiceImpl implements SiteService {
 	}
 
 	@Override
-	public Boolean deleteSite(int id) {
-		Boolean success;
+	public boolean deleteSite(Integer id) {
 		Optional<Site> site = repo.findById(id);
 		if (site.isPresent()) {
 			Site siteForDeletion = site.get();
 			repo.delete(siteForDeletion);
-			success = true;
-			return success;
+			return true;
 		} else {
+			System.err.println("site is not present");
 			return false;
 		}
 	}
 
 	@Override
-	public Site updateSite(int id, Site site) {
+	public Site updateSite(Integer id, Site site) {
 		Optional<Site> siteOpt = repo.findById(id);
 		if (siteOpt.isPresent()) {
 			Site siteForUpdate = siteOpt.get();
 			siteForUpdate = site;
-			repo.saveAndFlush(siteForUpdate);
-			return siteForUpdate;
+			siteForUpdate.setId(id);
+			Site updatedSite = repo.saveAndFlush(siteForUpdate);
+			return updatedSite;
 		} else {
 			return null;
 		}
 
+	}
+
+	@Override
+	public Site showById(Integer id) {
+		Optional<Site> siteOpt = repo.findById(id);
+		Site site = new Site();
+		if(siteOpt.isPresent()) {
+			site = siteOpt.get();
+		}
+		return site;
 	}
 
 }

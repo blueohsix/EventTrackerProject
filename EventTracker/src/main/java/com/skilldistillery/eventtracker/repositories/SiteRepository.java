@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.skilldistillery.eventtracker.entities.Site;
 
-public interface SiteRepository extends JpaRepository<Site, Integer>{
+public interface SiteRepository extends JpaRepository<Site, Integer> {
 	List<Site> findBySiteNumberLike(String siteNumber);
-	
+//select site_number from Site where site_number like = %siteNumber%
 }

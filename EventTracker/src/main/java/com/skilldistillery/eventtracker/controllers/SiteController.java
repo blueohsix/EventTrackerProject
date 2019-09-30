@@ -24,10 +24,10 @@ public class SiteController {
 	@Autowired
 	private SiteService service;
 
-	@GetMapping("ping")
-	public String ping() {
-		return "pong\n";
-	}
+//	@GetMapping("ping")
+//	public String ping() {
+//		return "pong\n";
+//	}
 
 	@GetMapping("sites")
 	public List<Site> index(HttpServletRequest request, HttpServletResponse response) {
@@ -46,6 +46,29 @@ public class SiteController {
 		}
 	}
 
+	@GetMapping("site/{id}")
+	public Site showById(@PathVariable Integer id, HttpServletRequest request, HttpServletResponse response) {
+		try {
+			StringBuffer url = request.getRequestURL();
+			Site site = service.showById(id);
+			if (site.getId() == 0) {
+				url.append("/SiteNotFound");
+				System.err.println(url);
+				response.setHeader("Location", url.toString());
+				response.setStatus(404);
+				return null;
+			} else {
+				response.setStatus(200);
+				return site;
+			}
+		} catch (Exception e) {
+			response.setStatus(400);
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
 	@GetMapping("sites/{siteNumber}")
 	public List<Site> searchBySiteNumber(@PathVariable String siteNumber, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -54,7 +77,6 @@ public class SiteController {
 			if (sites.isEmpty()) {
 				response.setStatus(404);
 			} else {
-				System.err.println(sites);
 				response.setStatus(200);
 			}
 			return sites;
@@ -65,18 +87,18 @@ public class SiteController {
 		}
 	}
 
-	@PostMapping("sites")
+	@PostMapping("site")
 	public Site addSite(@RequestBody Site site, HttpServletRequest request, HttpServletResponse response) {
 		try {
 			Site newSite = new Site();
 			newSite = site;
+			service.addSite(newSite);
 			StringBuffer url = request.getRequestURL();
-			url.append("/");
 			url.append(newSite.getId());
 			System.err.println(url);
 			response.setStatus(201);
 			response.setHeader("Location", url.toString());
-			return service.addSite(newSite);
+			return newSite;
 		} catch (Exception e) {
 			response.setStatus(400);
 			e.printStackTrace();
@@ -85,19 +107,20 @@ public class SiteController {
 
 	}
 
-	@PutMapping("sites/{id}")
-	public Site updateSite(@PathVariable int id, @RequestBody Site site, HttpServletRequest request,
+	@PutMapping("site/{id}")
+	public Site updateSite(@PathVariable Integer id, @RequestBody Site site, HttpServletRequest request,
 			HttpServletResponse response) {
 		try {
-			Site newSite = new Site();
-			newSite = site;
+
+			Site updatedSite = service.updateSite(id, site);
 			StringBuffer url = request.getRequestURL();
 			url.append("/");
-			url.append(newSite.getId());
+			url.append(updatedSite.getId());
 			System.err.println(url);
 			response.setStatus(200);
 			response.setHeader("Location", url.toString());
-			return service.updateSite(id, site);
+			return updatedSite;
+
 		} catch (Exception e) {
 			response.setStatus(400);
 			e.printStackTrace();
@@ -106,20 +129,23 @@ public class SiteController {
 
 	}
 
-	@DeleteMapping("sites/{id}")
-	public boolean deleteSite(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
+	@DeleteMapping("site/{id}")
+	public boolean deleteSite(@PathVariable Integer id, HttpServletRequest request, HttpServletResponse response) {
 		try {
 			StringBuffer url = request.getRequestURL();
-			url.append("/success");
+			service.deleteSite(id);
+			url.append("/DeleteSuccess");
 			System.err.println(url);
-			response.setStatus(204);
 			response.setHeader("Location", url.toString());
-			return service.deleteSite(id);
+			response.setStatus(204);
+			return true;
+
 		} catch (Exception e) {
 			StringBuffer url = request.getRequestURL();
-			url.append("/fail");
+			url.append("/deleteSiteFail");
 			System.err.println(url);
 			response.setStatus(400);
+			response.setHeader("Location", url.toString());
 			e.printStackTrace();
 			return false;
 		}
