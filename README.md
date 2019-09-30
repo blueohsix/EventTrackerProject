@@ -26,7 +26,7 @@ Example JSON
 }
 ```
 REST Route URIs
-![RouteURIs](images/RouteURIs.jpg)
+![RouteURIs](Images/RouteURIs.jpg)
 
 #### Usage
 *Get all sites*
@@ -55,9 +55,9 @@ DELETE http://3.13.155.249:8080/EventTracker/api/site/{id}
 ```
 
 Database Structure
-![EER Diagram](images/EERDiagram.jpg)
+![EER Diagram](Images/EERDiagram.jpg)
 Default Inserts
-![SQL table](images/defaultInserts.jpg)
+![SQL table](Images/defaultInserts.jpg)
 
 ### Technologies Used
 * Spring Boot, Spring REST, Spring Tool Suite
