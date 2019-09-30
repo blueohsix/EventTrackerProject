@@ -3,7 +3,7 @@ Week 12, Individual Project for Skill Distillery
 
 *Cell Site Log*
 
-[Hosted live on AWS ](http://3.13.155.249:8080/EventTracker/)
+[Hosted live on AWS ](http://3.13.155.249:8080/EventTracker/api/sites) (Get all sites)
 
 
 ### Overview
