@@ -7,6 +7,7 @@ window.addEventListener('load', function(e) {
 function searchSites() {
 	document.search.lookup.addEventListener('click', function(event) {
 		event.preventDefault();
+
 		var siteNumber = document.search.siteNumber.value;
 		if (siteNumber) {
 			findBySiteNumber(siteNumber);
@@ -62,6 +63,55 @@ function showForm() {
 	})
 };
 
+function addSite() {
+	submitSite.addEventListener('click', function(e) {
+		e.preventDefault();
+		console.log('addSite()');
+		let siteName = siteForm.siteName.value;
+		let siteNumber = siteForm.siteNumber.value;
+		let siteOwner = siteForm.siteOwner.value;
+		let towerType = siteForm.towerType.value;
+		let towerHeight = siteForm.towerHeight.value;
+		let longitude = siteForm.longitude.value;
+		let latitude = siteForm.latitude.value;
+		var removeForm = document.getElementById('siteForm');
+
+		let xhr = new XMLHttpRequest();
+		xhr.open("POST", 'api/site', true);
+		xhr.setRequestHeader("Content-Type", "application/json");
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState === 4) {
+				if (xhr.status == 200 || xhr.status == 201) {
+					let site = JSON.parse(xhr.responseText);
+					console.log(site);
+					removeForm.parentElement.removeChild(removeForm);
+					displaySite(site);
+				} else {
+					console.log("POST request failed.");
+					console.error(xhr.status + ': ' + xhr.responseText);
+				}
+			}
+		};
+		var site = {
+			siteName : siteName,
+			siteNumber : siteNumber,
+			siteOwner : siteOwner,
+			towerType : towerType,
+			towerHeight : towerHeight,
+			longitude : longitude,
+			latitude : latitude
+		};
+		let siteJSON = JSON.stringify(site);
+		console.log(siteJSON);
+		xhr.send(siteJSON);
+	})
+};
+
+function updateSite(){
+	
+}
+
+
 function displayCreateForm() {
 	var formDiv = document.getElementById('createForm');
 	formDiv.textContent = '';
@@ -115,60 +165,40 @@ function displayCreateForm() {
 	addSite();
 };
 
-function addSite() {
-	submitSite.addEventListener('click', function(e) {
-		e.preventDefault();
-		console.log('addSite()');
-		let siteName = siteForm.siteName.value;
-		let siteNumber = siteForm.siteNumber.value;
-		let siteOwner = siteForm.siteOwner.value;
-		let towerType = siteForm.towerType.value;
-		let towerHeight = siteForm.towerHeight.value;
-		let longitude = siteForm.longitude.value;
-		let latitude = siteForm.latitude.value;
-		var removeForm = document.getElementById('siteForm');
-
-		let xhr = new XMLHttpRequest();
-		xhr.open("POST", 'api/site', true);
-		xhr.setRequestHeader("Content-Type", "application/json");
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState === 4) {
-				if (xhr.status == 200 || xhr.status == 201) {
-					let site = JSON.parse(xhr.responseText);
-					console.log(site);
-					removeForm.parentElement.removeChild(removeForm);
-					displaySite(site);
-				} else {
-					console.log("POST request failed.");
-					console.error(xhr.status + ': ' + xhr.responseText);
-				}
-			}
-		};
-		var site = {
-			siteName : siteName,
-			siteNumber : siteNumber,
-			siteOwner : siteOwner,
-			towerType : towerType,
-			towerHeight : towerHeight,
-			longitude : longitude,
-			latitude : latitude
-		};
-		let siteJSON = JSON.stringify(site);
-		console.log(siteJSON);
-		xhr.send(siteJSON);
-	})
-};
-
 function displaySite(sites) {
-	var dataDiv = document.getElementById('displaySites');
-	dataDiv.textContent = '';
-	
-	for (var i = 0; i < sites.length; i++) {
-		let h4 = document.createElement('h4');
-		h4.textContent = sites[i].siteName;
-		dataDiv.appendChild(h4);
-		let text = document.createElement('h6');
-		text.textContent= " - " + sites[i].siteNumber + " - " + sites[i].siteOwner;
-		dataDiv.appendChild(text);
+	if (document.getElementById('table')) {
+		let removedata = document.getElementById('table');
+		removedata.parentElement.removeChild(removedata);
+	}
+	let dataDiv = document.getElementById('displaySites');
+	let table = document.createElement('table');
+	table.id = "table";
+	let tableRow = document.createElement('tr');
+	dataDiv.appendChild(table);
+	table.appendChild(tableRow);
+	for ( let c in sites[0]) {
+		let headerCell = document.createElement('th');
+		if (c !== 'id') {
+			headerCell.textContent = c;
+			table.appendChild(headerCell);
+		}
+	}
+	for (let i = 0; i < sites.length; i++) {
+		let site = sites[i];
+		let tableRow = document.createElement('tr');
+		table.appendChild(tableRow);
+		let input = document.createElement('input');
+		input.type="hidden";
+		input.name="siteId";
+		input.value=site.id;
+		console.log(site.id);
+		for ( let c in site) {
+			let data = document.createElement('td');
+			if (c !== 'id') {
+				data.textContent = site[c];
+				table.appendChild(data);
+			}
+		}
+
 	}
 }
