@@ -274,7 +274,7 @@ function displaySite(sites) {
 			table.appendChild(headerCell);
 		}
 	}
-	for (let i = 0; i < sites.length; i++) {
+	for (var i = 0; i < sites.length; i++) {
 		let site = sites[i];
 		let tableRow = document.createElement('tr');
 		table.appendChild(tableRow);
@@ -306,4 +306,9 @@ function displaySite(sites) {
 		table.appendChild(deleteButton);
 
 	}
+	let tableRowTotal = document.createElement('tr');
+	table.appendChild(tableRowTotal);
+	let displayTotal = document.createElement('td');
+	displayTotal.textContent = i + " sites found";
+	table.appendChild(displayTotal);
 }

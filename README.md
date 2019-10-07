@@ -1,13 +1,16 @@
 ## RESTful Services Event Tracker
-Week 12, Individual Project for Skill Distillery
+Weeks 12 and 13, Individual Project for Skill Distillery
+
 
 *Cell Site Log*
 
-[Hosted live on AWS ](http://3.13.155.249:8080/EventTracker/api/sites) (Get all sites)
+[Hosted live on AWS ](http://3.13.155.249:8080/EventTracker/api/sites) (Get all sites api) Week 12 Weekend HW
+
+[Hosted live on AWS ](http://3.13.155.249:8080/EventTracker/) (JavaScript front-end) Week 13 Weekend HW
 
 
 ### Overview
-This simple REST API is the foundational backend for a future Cell Site Log implementing JavaScript for a frontend.
+This simple REST API is the foundational backend for a Cell Site Log implementing JavaScript for a frontend.
 
 
 Feel free to play around with the routes below.
