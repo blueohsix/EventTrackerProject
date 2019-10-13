@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS `site` (
   `tower_height` DOUBLE NULL,
   `longitude` DOUBLE NULL,
   `latitude` DOUBLE NULL,
+  `image_url` LONGTEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -48,11 +49,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eventtracker`;
-INSERT INTO `site` (`id`, `site_name`, `site_number`, `site_owner`, `tower_type`, `tower_height`, `longitude`, `latitude`) VALUES (1, 'Crazy Haven', '1234096', 'INDOT', 'Self-Support', 250, 39.702610, -86.107531);
-INSERT INTO `site` (`id`, `site_name`, `site_number`, `site_owner`, `tower_type`, `tower_height`, `longitude`, `latitude`) VALUES (2, 'Wild Hostel', '1234097', 'INDOT', 'Monopole', 130, 39.714386, -86.007756);
-INSERT INTO `site` (`id`, `site_name`, `site_number`, `site_owner`, `tower_type`, `tower_height`, `longitude`, `latitude`) VALUES (3, 'Ridiculous Hovel', '1237375', 'INDOT', 'Guyed', 560, 39.695298, -86.187151);
-INSERT INTO `site` (`id`, `site_name`, `site_number`, `site_owner`, `tower_type`, `tower_height`, `longitude`, `latitude`) VALUES (4, 'Ludicrous Home', '1234094', 'INDOT', 'Self-Support', 200, 39.732172, -86.241875);
-INSERT INTO `site` (`id`, `site_name`, `site_number`, `site_owner`, `tower_type`, `tower_height`, `longitude`, `latitude`) VALUES (5, 'Loopy Hotel', '1236775', 'INDOT', 'Guyed', 340, 39.930878, -86.157277);
+INSERT INTO `site` (`id`, `site_name`, `site_number`, `site_owner`, `tower_type`, `tower_height`, `longitude`, `latitude`, `image_url`) VALUES (1, 'Crazy Haven', '1234096', 'INDOT', 'Self-Support', 200, 39.702610, -86.107531, 'https://i.imgur.com/fpVd5uq.png');
+INSERT INTO `site` (`id`, `site_name`, `site_number`, `site_owner`, `tower_type`, `tower_height`, `longitude`, `latitude`, `image_url`) VALUES (2, 'Wild Hostel', '1234097', 'INDOT', 'Self-Support', 200, 39.714386, -86.007756, 'https://i.imgur.com/3TwLMAE.png?1');
+INSERT INTO `site` (`id`, `site_name`, `site_number`, `site_owner`, `tower_type`, `tower_height`, `longitude`, `latitude`, `image_url`) VALUES (3, 'Ridiculous Hovel', '1237375', 'INDOT', 'Self-Support', 200, 39.695298, -86.187151, 'https://i.imgur.com/IoFJUzW.png');
+INSERT INTO `site` (`id`, `site_name`, `site_number`, `site_owner`, `tower_type`, `tower_height`, `longitude`, `latitude`, `image_url`) VALUES (4, 'Ludicrous Home', '1234094', 'INDOT', 'Self-Support', 200, 39.732172, -86.241875, 'https://i.imgur.com/IB3QLqt.png');
+INSERT INTO `site` (`id`, `site_name`, `site_number`, `site_owner`, `tower_type`, `tower_height`, `longitude`, `latitude`, `image_url`) VALUES (5, 'Loopy Hotel', '1236775', 'INDOT', 'Self-Support', 200, 39.930878, -86.157277, 'https://i.imgur.com/q0v8XN2.png');
 
 COMMIT;
 

@@ -1,0 +1,122 @@
+<span id="title" class="float-right border border-dark">Site Tracker</span>
+<div id="header">
+  <span>
+    <input
+      type="button"
+      class="btn btn-primary btn-sm"
+      (click)="selected = null; newSite = null; modifiedSite = null; danger = null;"
+      value="Home"
+    />
+    <input
+      *ngIf="!newSite"
+      type="button"
+      class="btn btn-success btn-sm"
+      (click)="addForm(); danger = null; selected = null; modifiedSite = null;"
+      value="Add Site"
+    />
+    <input
+      *ngIf="selected"
+      type="button"
+      class="btn btn-warning btn-sm"
+      (click)="editForm(); danger = null; newSite = null; danger = null;"
+      value="Edit Site"
+    />
+  </span>
+</div>
+<br />
+<!-- <div id="instructions" *ngIf="!selected">
+	Show all sites: click search.<br>
+	Search individual sites: input a complete or partial Site Number.
+</div> -->
+<div id="index" *ngIf="!selected && !newSite && !modifiedSite">
+  <table class="table table-hover table-sm">
+    <thead class="thead-dark">
+      <th scope="col">Site Owner</th>
+      <th scope="col">Site Name</th>
+      <th scope="col">Site Number</th>
+    </thead>
+    <tbody class="table-striped table-bordered ">
+      <tr *ngFor="let site of sites" (click)="displaySite(site)">
+        <td>{{ site.siteOwner }}</td>
+        <td>{{ site.siteName }}</td>
+        <td>{{ site.siteNumber }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div id="site" *ngIf="selected && !newSite && !modifiedSite">
+  <table class="table table-hover table-sm">
+    <thead class="thead-dark">
+      <th scope="col">Site Owner</th>
+      <th scope="col">Site Name</th>
+      <th scope="col">Site Number</th>
+    </thead>
+    <tbody class="table-striped table-bordered ">
+      <tr>
+        <td>{{ selected.siteOwner }}</td>
+        <td>{{ selected.siteName }}</td>
+        <td>{{ selected.siteNumber }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ul>
+    <li>Tower Type: {{ selected.towerType }}</li>
+    <li>Tower Height: {{ selected.towerHeight }}'</li>
+    <li>Location: {{ selected.longitude + ", " + selected.latitude }}</li>
+    <li *ngIf="selected.imageUrl">
+      <img
+        class="img-fluid"
+        src="{{ selected.imageUrl }}"
+        alt="Photo of site {{ selected.siteName }}"
+      />
+    </li>
+  </ul>
+</div>
+<div id="deleteButtonToggle" *ngIf="selected && !modified">
+  <label>
+    <input type="checkbox" value="" (change)="danger = danger != true" />Allow
+    Delete
+  </label>
+  <input
+    id="deleteButton"
+    *ngIf="danger"
+    type="button"
+    class="btn btn-danger btn-sm float-right"
+    (click)="deleteSite(selected.id); selected = null; danger = null"
+    value="Delete Site"
+  />
+</div>
+<br />
+<div id="editForm" *ngIf="modifiedSite">
+  <h3>Edit Site</h3>
+  <form>
+    <input class="textField" type="text" name="siteOwner" [(ngModel)]="modifiedSite.siteOwner" placeholder="Site Owner" />
+    <input class="textField" type="text" name="siteName" [(ngModel)]="modifiedSite.siteName" placeholder="Site Name" />
+    <input class="textField" type="text" name="siteNumber" [(ngModel)]="modifiedSite.siteNumber" placeholder="Site Number" />
+    <input class="textField" type="text" name="towerType" [(ngModel)]="modifiedSite.towerType" placeholder="Tower Type" />
+    <input class="textField" type="number" name="towerHeight" [(ngModel)]="modifiedSite.towerHeight" placeholder="Tower Height"/>
+    <input class="textField" type="text" name="imageUrl" [(ngModel)]="modifiedSite.imageUrl" placeholder="Overall Photo Link" />
+    <input class="textField" type="number" name="longitude" [(ngModel)]="modifiedSite.longitude" placeholder="Longitude" />
+    <input class="textField" type="number" name="latitude" [(ngModel)]="modifiedSite.latitude" placeholder="Latitude" />
+    <br>
+    <input class="btn btn-success btn sm" type="submit" value="Save" (click)="updateSite()" />
+    <input class="btn btn-secondary btn sm" type="button" value="Cancel" (click)="modifiedSite = null" />
+  </form>
+</div>
+
+<div id="create" *ngIf="newSite">
+  <h3>Add New Site</h3>
+  <form  #createForm="ngForm">
+    <input class="textField" type="text" name="siteOwner" ngModel placeholder="Site Owner" />
+    <input class="textField" type="text" name="siteName" ngModel placeholder="Site Name" />
+    <input class="textField" type="text" name="siteNumber" ngModel placeholder="Site Number" />
+    <input class="textField" type="text" name="towerType" ngModel placeholder="Tower Type" />
+    <input class="textField" type="number" name="towerHeight" ngModel placeholder="Tower Height"/>
+    <input class="textField" type="text" name="imageUrl" ngModel placeholder="Overall Photo Link" />
+    <input class="textField" type="number" name="longitude" ngModel placeholder="Longitude" />
+    <input class="textField" type="number" name="latitude" ngModel placeholder="Latitude" />
+    <br>
+    <input class="btn btn-success btn sm" type="submit" value="Add Site" (click)="addSite(createForm)" />
+    <input class="btn btn-secondary btn sm" type="button" value="Cancel" (click)="newSite = null" />
+  </form>
+</div>

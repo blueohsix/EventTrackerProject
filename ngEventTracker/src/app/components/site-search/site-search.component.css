@@ -1,0 +1,18 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#title {
+  font-family: Arial, Helvetica;
+  font-size: 7vw;
+  padding-left: 3px;
+  padding-right:3px;
+}
+.textField {
+  border: 1px solid #ccc;
+}

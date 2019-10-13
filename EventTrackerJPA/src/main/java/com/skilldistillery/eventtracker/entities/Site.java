@@ -25,21 +25,8 @@ public class Site {
 	private Double towerHeight;
 	private Double longitude;
 	private Double latitude;
-	
-	public Site() {
-		super();
-	}
-	public Site(String siteName, String siteNumber, String siteOwner, String towerType, Double towerHeight,
-			Double longitude, Double latitude) {
-		super();
-		this.siteName = siteName;
-		this.siteNumber = siteNumber;
-		this.siteOwner = siteOwner;
-		this.towerType = towerType;
-		this.towerHeight = towerHeight;
-		this.longitude = longitude;
-		this.latitude = latitude;
-	}
+	@Column(name="image_url")
+	private String imageUrl;
 	public int getId() {
 		return id;
 	}
@@ -88,6 +75,33 @@ public class Site {
 	public void setLatitude(Double latitude) {
 		this.latitude = latitude;
 	}
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	public Site(String siteName, String siteNumber, String siteOwner, String towerType, Double towerHeight,
+			Double longitude, Double latitude, String imageUrl) {
+		super();
+		this.siteName = siteName;
+		this.siteNumber = siteNumber;
+		this.siteOwner = siteOwner;
+		this.towerType = towerType;
+		this.towerHeight = towerHeight;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.imageUrl = imageUrl;
+	}
+	public Site() {
+		super();
+	}
+	@Override
+	public String toString() {
+		return "Site [id=" + id + ", siteName=" + siteName + ", siteNumber=" + siteNumber + ", siteOwner=" + siteOwner
+				+ ", towerType=" + towerType + ", towerHeight=" + towerHeight + ", longitude=" + longitude
+				+ ", latitude=" + latitude + ", imageUrl=" + imageUrl + "]";
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -108,6 +122,7 @@ public class Site {
 			return false;
 		return true;
 	}
+	
 	
 	
 }
