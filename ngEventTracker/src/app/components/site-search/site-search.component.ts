@@ -26,16 +26,20 @@ danger: boolean;
 
   displaySite(site: Site) {
     this.selected = site;
+
   }
   editForm() {
     this.modifiedSite = this.selected;
   }
+
   addForm() {
     this.newSite = new Site();
   }
-
   reload() {
+    this.modifiedSite = null;
+    this.selected = null;
     this.newSite = null;
+    this.sites = null;
     this.siteService.index().subscribe(
       lifeIsGood => {
         this.sites = lifeIsGood;
@@ -83,13 +87,12 @@ danger: boolean;
   updateSite() {
     this.siteService.update(this.modifiedSite).subscribe(
       lifeIsGood => {
-        this.modifiedSite = this.modifiedSite;
+        this.selected = this.modifiedSite;
+        this.modifiedSite = null;
       },
       whenThingsGoBad => {
         console.error('error in updateSite()');
       }
     );
-    this.selected = this.modifiedSite;
-    this.modifiedSite = null;
   }
 }

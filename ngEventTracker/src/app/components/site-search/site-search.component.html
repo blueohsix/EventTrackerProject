@@ -72,7 +72,7 @@
     </li>
   </ul>
 </div>
-<div id="deleteButtonToggle" *ngIf="selected && !modified">
+<div id="deleteButtonToggle" *ngIf="selected && !modifiedSite">
   <label>
     <input type="checkbox" value="" (change)="danger = danger != true" />Allow
     Delete
@@ -88,21 +88,21 @@
 </div>
 <br />
 <div id="editForm" *ngIf="modifiedSite">
-  <h3>Edit Site</h3>
-  <form>
-    <input class="textField" type="text" name="siteOwner" [(ngModel)]="modifiedSite.siteOwner" placeholder="Site Owner" />
-    <input class="textField" type="text" name="siteName" [(ngModel)]="modifiedSite.siteName" placeholder="Site Name" />
-    <input class="textField" type="text" name="siteNumber" [(ngModel)]="modifiedSite.siteNumber" placeholder="Site Number" />
-    <input class="textField" type="text" name="towerType" [(ngModel)]="modifiedSite.towerType" placeholder="Tower Type" />
-    <input class="textField" type="number" name="towerHeight" [(ngModel)]="modifiedSite.towerHeight" placeholder="Tower Height"/>
-    <input class="textField" type="text" name="imageUrl" [(ngModel)]="modifiedSite.imageUrl" placeholder="Overall Photo Link" />
-    <input class="textField" type="number" name="longitude" [(ngModel)]="modifiedSite.longitude" placeholder="Longitude" />
-    <input class="textField" type="number" name="latitude" [(ngModel)]="modifiedSite.latitude" placeholder="Latitude" />
-    <br>
-    <input class="btn btn-success btn sm" type="submit" value="Save" (click)="updateSite()" />
-    <input class="btn btn-secondary btn sm" type="button" value="Cancel" (click)="modifiedSite = null" />
-  </form>
-</div>
+    <h3>Edit Site</h3>
+    <form>
+      <input class="textField" type="text" name="siteOwner" [(ngModel)]="modifiedSite.siteOwner" placeholder="Site Owner" />
+      <input class="textField" type="text" name="siteName" [(ngModel)]="modifiedSite.siteName" placeholder="Site Name" />
+      <input class="textField" type="text" name="siteNumber" [(ngModel)]="modifiedSite.siteNumber" placeholder="Site Number" />
+      <input class="textField" type="text" name="towerType" [(ngModel)]="modifiedSite.towerType" placeholder="Tower Type" />
+      <input class="textField" type="number" name="towerHeight" [(ngModel)]="modifiedSite.towerHeight" placeholder="Tower Height"/>
+      <input class="textField" type="text" name="imageUrl" [(ngModel)]="modifiedSite.imageUrl" placeholder="Overall Photo Link" />
+      <input class="textField" type="number" name="longitude" [(ngModel)]="modifiedSite.longitude" placeholder="Longitude" />
+      <input class="textField" type="number" name="latitude" [(ngModel)]="modifiedSite.latitude" placeholder="Latitude" />
+      <br>
+      <input class="btn btn-success btn sm" type="submit" value="Save" (click)="updateSite()" />
+      <input class="btn btn-secondary btn sm" type="button" value="Cancel" (click)="reload()" />
+    </form>
+  </div>
 
 <div id="create" *ngIf="newSite">
   <h3>Add New Site</h3>

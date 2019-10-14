@@ -8,8 +8,10 @@ import { Site } from '../models/site';
   providedIn: 'root'
 })
 export class SiteService {
-  private sitesUrl = 'http://localhost:8085/api/sites/';
-  private siteUrl = 'http://localhost:8085/api/site/';
+//  private sitesUrl = 'http://localhost:8085/api/sites/'; // development
+//  private siteUrl = 'http://localhost:8085/api/site/';  // development
+    private sitesUrl = '/EventTracker/api/sites/'; // production
+    private siteUrl = '/EventTracker/api/site/'; // production
 
 
   constructor(private http: HttpClient) { }
