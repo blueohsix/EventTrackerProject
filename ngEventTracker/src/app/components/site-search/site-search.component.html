@@ -24,10 +24,6 @@
   </span>
 </div>
 <br />
-<!-- <div id="instructions" *ngIf="!selected">
-	Show all sites: click search.<br>
-	Search individual sites: input a complete or partial Site Number.
-</div> -->
 <div id="index" *ngIf="!selected && !newSite && !modifiedSite">
   <table class="table table-hover table-sm">
     <thead class="thead-dark">
@@ -38,8 +34,11 @@
     <tbody class="table-striped table-bordered ">
       <tr *ngFor="let site of sites" (click)="displaySite(site)">
         <td>{{ site.siteOwner }}</td>
-        <td>{{ site.siteName }}</td>
+        <td><u id="indexSiteName">{{ site.siteName }}</u></td>
         <td>{{ site.siteNumber }}</td>
+      </tr>
+      <tr>
+        <td>Sites Visited: {{total}}</td>
       </tr>
     </tbody>
   </table>

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Site } from 'src/app/models/site';
 import { SiteService } from 'src/app/services/site.service';
 import { NgForm } from '@angular/forms';
-import { stringify } from 'querystring';
-import { format } from 'url';
 
 @Component({
   selector: 'app-site-search',
@@ -16,6 +14,7 @@ newSite = new Site();
 modifiedSite = null;
 selected = null;
 danger: boolean;
+total: number;
 
 
   constructor(private siteService: SiteService) { }
@@ -43,6 +42,7 @@ danger: boolean;
     this.siteService.index().subscribe(
       lifeIsGood => {
         this.sites = lifeIsGood;
+        this.total = this.sites.length;
         console.log(this.sites);
 
       },

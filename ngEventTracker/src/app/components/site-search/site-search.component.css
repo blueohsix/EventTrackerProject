@@ -16,3 +16,6 @@ ul {
 .textField {
   border: 1px solid #ccc;
 }
+#indexSiteName {
+  color: blue;
+}
