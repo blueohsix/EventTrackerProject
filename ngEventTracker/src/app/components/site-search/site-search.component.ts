@@ -3,6 +3,7 @@ import { Site } from 'src/app/models/site';
 import { SiteService } from 'src/app/services/site.service';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-site-search',
   templateUrl: './site-search.component.html',
@@ -15,7 +16,6 @@ modifiedSite = null;
 selected = null;
 danger: boolean;
 total: number;
-
 
   constructor(private siteService: SiteService) { }
 

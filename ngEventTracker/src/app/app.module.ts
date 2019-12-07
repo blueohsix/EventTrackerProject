@@ -8,11 +8,13 @@ import { SiteSearchComponent } from './components/site-search/site-search.compon
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SiteService} from './services/site.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TypeaheadComponent } from './components/typeahead/typeahead.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SiteSearchComponent
+    SiteSearchComponent,
+    TypeaheadComponent
   ],
   imports: [
     BrowserModule,
