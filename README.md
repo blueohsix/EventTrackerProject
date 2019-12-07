@@ -57,9 +57,12 @@ PUT http://3.13.155.249:8080/EventTracker/api/site/{id}
 DELETE http://3.13.155.249:8080/EventTracker/api/site/{id}
 ```
 
-Database Structure
-![EER Diagram](Images/EERDiagram.jpg)
-Default Inserts
+Database Structure  
+
+![EER Diagram](Images/EERDiagram.jpg)  
+
+Default Inserts  
+
 ![SQL table](Images/defaultInserts.jpg)
 
 ### Technologies Used
