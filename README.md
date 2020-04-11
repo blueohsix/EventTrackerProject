@@ -4,9 +4,9 @@ Weeks 12 and 13, Individual Project for Skill Distillery
 
 *Cell Site Log*
 
-[Hosted live on AWS ](http://caseyasher.info/apps/EventTracker/api/sites) (Get all sites api) Week 12 Weekend HW
+[Hosted live on AWS ](http://tomcat.caseyasher.info/apps/EventTracker/api/sites) (Get all sites api) Week 12 Weekend HW
 
-[Hosted live on AWS ](http://caseyasher.info/apps/EventTracker/) (Angular front-end) Week 13 Weekend HW
+[Hosted live on AWS ](http://tomcat.caseyasher.info/apps/EventTracker/) (Angular front-end) Week 13 Weekend HW
 
 
 ### Overview
@@ -34,27 +34,27 @@ REST Route URIs
 #### Usage
 *Get all sites*
 ```
-GET http://3.13.155.249:8080/EventTracker/api/sites
+GET http://tomcat.caseyasher.info/apps/EventTracker/api/sites
 ```
 *Get site by ID*
 ```
-GET http://3.13.155.249:8080/EventTracker/api/site/{id}
+GET http://tomcat.caseyasher.info/apps/EventTracker/api/site/{id}
 ```
 *Get List of sites by Site Number*
 ```
-GET http://3.13.155.249:8080/EventTracker/api/site/{siteNumber}
+GET http://tomcat.caseyasher.info/appsEventTracker/api/site/{siteNumber}
 ```
 *Add site* (JSON needed)
 ```
-POST http://3.13.155.249:8080/EventTracker/api/site
+POST http://tomcat.caseyasher.info/apps/EventTracker/api/site
 ```
 *Update site* (JSON needed)
 ```
-PUT http://3.13.155.249:8080/EventTracker/api/site/{id}
+PUT http://tomcat.caseyasher.info/apps/EventTracker/api/site/{id}
 ```
 *Delete site* (primary key as ID)
 ```
-DELETE http://3.13.155.249:8080/EventTracker/api/site/{id}
+DELETE http://tomcat.caseyasher.info/apps/EventTracker/api/site/{id}
 ```
 
 Database Structure  
